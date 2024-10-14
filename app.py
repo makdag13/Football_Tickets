@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, request, redirect, url_for
+=======
+from flask import Flask, render_template, request, redirect
+>>>>>>> cbac6113d1b963df7e5170b6330bb1a1f456f294
 import sqlite3
 
 app = Flask(__name__)
@@ -47,6 +51,7 @@ init_db()
 
 @app.route('/')
 def index():
+<<<<<<< HEAD
     return render_template('index.html')  # Ana sayfayı render et
 
 @app.route('/customer_info')
@@ -65,26 +70,45 @@ def submit():
     conn.close()
 
     return redirect(url_for('buy_ticket'))  # Bilet satın alma sayfasına yönlendir
+=======
+    return render_template('index.html')
+>>>>>>> cbac6113d1b963df7e5170b6330bb1a1f456f294
 
 @app.route('/buy_ticket', methods=['GET', 'POST'])
 def buy_ticket():
     if request.method == 'POST':
         seat_number = request.form['seat_number']
+<<<<<<< HEAD
         # Bilet bilgilerini veritabanına ekle
         conn = sqlite3.connect('ticket_system.db')
         c = conn.cursor()
         c.execute('INSERT INTO tickets (user_id, match_id, seat_number) VALUES (?, ?, ?)', (1, 1, seat_number))  # Kullanıcı ID'si ve Maç ID'si sabit
+=======
+        # Add ticket to the database
+        conn = sqlite3.connect('ticket_system.db')
+        c = conn.cursor()
+        c.execute('INSERT INTO tickets (user_id, match_id, seat_number) VALUES (?, ?, ?)', (1, 1, seat_number))
+>>>>>>> cbac6113d1b963df7e5170b6330bb1a1f456f294
         conn.commit()
         conn.close()
         return redirect('/confirmation')
 
+<<<<<<< HEAD
     # Mevcut koltukları göster
     total_seats = range(1, 51)  # 50 koltuk mevcut
+=======
+    # Show available seats
+    total_seats = range(1, 51)  # Assuming 50 seats are available
+>>>>>>> cbac6113d1b963df7e5170b6330bb1a1f456f294
     return render_template('buy_ticket.html', available_seats=total_seats)
 
 @app.route('/confirmation')
 def confirmation():
+<<<<<<< HEAD
     return render_template('confirmation.html')  # Bilet onay sayfası
+=======
+    return render_template('confirmation.html')
+>>>>>>> cbac6113d1b963df7e5170b6330bb1a1f456f294
 
 if __name__ == '__main__':
     app.run(debug=True)
