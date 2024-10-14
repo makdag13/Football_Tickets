@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Buy Ticket</title>
+</head>
+<body>
+    <h2>Select a Seat</h2>
+    <form action="/buy_ticket" method="POST">
+        <label for="seat_number">Available Seats:</label>
+        <select name="seat_number">
+            {% for seat in available_seats %}
+            <option value="{{ seat }}">{{ seat }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Purchase Ticket</button>
+    </form>
+</body>
+</html>
